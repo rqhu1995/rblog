@@ -1,15 +1,96 @@
----
-title: Linear-Programming
-author: R package build
-date: "2022-04-23T13:09:13-06:00"
-slug: linear-programming
-categories: []
-tags: []
-header-includes:
-  - <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
-  - <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
----
+<!DOCTYPE html>
+<html lang="en-us">
+  <head>
+    <meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="generator" content="Hugo 0.97.3" />
 
+
+<title>Linear-Programming - A Hugo website</title>
+<meta property="og:title" content="Linear-Programming - A Hugo website">
+
+
+  <link href='https://runqhu.com/favicon.ico' rel='icon' type='image/x-icon'/>
+
+
+
+  
+
+
+
+
+
+
+
+<link rel="stylesheet" href="/css/fonts.css" media="all">
+<link rel="stylesheet" href="/css/main.css" media="all">
+
+
+
+
+
+    <script src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML"></script>
+    
+    <script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+            displayMath: [ ['$$','$$'], ["\\[","\\]"] ],
+            processEscapes: true,
+            processEnvironments: true
+        },
+        // Center justify equations in code and markdown cells. Elsewhere
+        // we use CSS to left justify single line equations in code cells.
+        displayAlign: 'center',
+        "HTML-CSS": {
+            styles: {'.MathJax_Display': {"margin": 0}},
+            linebreaks: { automatic: true }
+        }
+    });
+    </script>
+
+
+  </head>
+  <body>
+    <div class="wrapper">
+      <header class="header">
+        <nav class="nav">
+  <a href="/" class="nav-logo">
+    <img src="/images/logo.png"
+         width="50"
+         height="50"
+         alt="Logo">
+  </a>
+
+  <ul class="nav-links">
+    
+    <li><a href="/about/">About</a></li>
+    
+    <li><a href="https://github.com/rstudio/blogdown">GitHub</a></li>
+    
+    <li><a href="https://twitter.com/rstudio">Twitter</a></li>
+    
+  </ul>
+</nav>
+
+      </header>
+
+
+<main class="content" role="main">
+
+  <article class="article">
+    
+    <span class="article-duration">2 min read</span>
+    
+
+    <h1 class="article-title">Linear-Programming</h1>
+
+    
+    <span class="article-date">2022-04-23</span>
+    
+
+    <div class="article-content">
+      
 <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
 <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
 
@@ -26,7 +107,7 @@ header-includes:
 <p>如果可行域<span class="math inline">\(P\)</span>完全落在某一个平面<span class="math inline">\(\symbfit{-c^Tx}=\beta\)</span>对应的平面的下半平面，那么<span class="math inline">\(\symbfit{c^Tx}\)</span>在<span class="math inline">\(P\)</span>内的最小值有一个下界<span class="math inline">\(-\beta\)</span>。</p>
 <p>沿着<span class="math inline">\(-c\)</span>（法向量）的方向走，目标函数<span class="math inline">\(\symbfit{-c^Tx}\)</span>的值越来越大，对应地，沿着<span class="math inline">\(c\)</span>（法向量）的方向走，<span class="math inline">\(\symbfit{-c^Tx}\)</span>的值越来越小，<span class="math inline">\(\symbfit{c^Tx}\)</span>的值越来越大，因此<span class="math inline">\(\symbfit{c^Tx}\)</span>的最小值最小只可能是<span class="math inline">\(-\beta\)</span>（正好位于平面<span class="math inline">\(\symbfit{c^Tx=-\beta}\)</span>）。因此，如果可行域与平面相交，那么最值在交点（或线或平面）处取得。</p>
 <p>这也解释了为什么Graphical Method，要求先画出可行区域，之后沿着一个方向（目标函数法向量）移动目标函数的曲线，直到找到与可行域的最后一个交点。</p>
-<p><img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-2-1.png" width="672" /></p>
+<p><img src="https://runqhu.com/2022/04/23/linear-programming/index_files/figure-html/unnamed-chunk-2-1.png" width="672" /></p>
 <blockquote>
 <p>Graphical Method：遍历每一个可行域Polyhedral的交点，根据目标函数得到<span class="math inline">\(-c\)</span>的方向，画出对应垂直的平面<span class="math inline">\(\symbfit{-c^Tx=\beta}\)</span>，看可行域是否完全位于该平面的下半空间，若找到则最优解也找到，否则继续遍历。</p>
 </blockquote>
@@ -185,3 +266,35 @@ B^{-1} &amp; -B^{-1}N \\
 代数上如何决定neighbouring？basic variable只有一个不同（选为BV的变量，并非具体的值）每个BFS有n-m个neighbors（从nbv里选一个进入bv，替换已有的bv，注意替换不是随便替换，需要通过计算把等于0的bv替换走，所以是n-m）</p>
 </div>
 </div>
+
+    </div>
+  </article>
+
+  
+
+
+</main>
+
+      <footer class="footer">
+        <ul class="footer-links">
+          <li>
+            <a href="/index.xml" type="application/rss+xml" target="_blank">RSS feed</a>
+          </li>
+          <li>
+            <a href="https://gohugo.io/" class="footer-links-kudos">Made with <img src="/images/hugo-logo.png" alt="Img link to Hugo website" width="22" height="22"></a>
+          </li>
+        </ul>
+      </footer>
+
+    </div>
+    
+
+    
+<script src="/js/math-code.js"></script>
+<script async src="//cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+
+
+    
+  </body>
+</html>
+
