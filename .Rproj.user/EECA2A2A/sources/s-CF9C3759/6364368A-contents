@@ -1,4 +1,4 @@
-baseurl: /
+baseurl: https://runqhu.com
 languageCode: en-us
 title: A Hugo website
 theme: hugo-lithium
