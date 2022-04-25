@@ -1,61 +1,31 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Posts on A Hugo website</title>
-    <link>https://runqhu.com/post/</link>
-    <description>Recent content in Posts on A Hugo website</description>
+    <title>Posts on Hugo Ivy</title>
+    <link>/post/</link>
+    <description>Recent content in Posts on Hugo Ivy</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Sat, 23 Apr 2022 13:09:13 -0600</lastBuildDate><atom:link href="https://runqhu.com/post/index.xml" rel="self" type="application/rss+xml" />
-    <item>
-      <title>Linear-Programming</title>
-      <link>https://runqhu.com/2022/04/23/linear-programming/</link>
-      <pubDate>Sat, 23 Apr 2022 13:09:13 -0600</pubDate>
-      
-      <guid>https://runqhu.com/2022/04/23/linear-programming/</guid>
-      <description>Constraint的几何意义 每一个Constraint是一个Equation，表示为\(\symbfit{a^TX=\beta}\)，表示一个平面
- \(\symbfit{a^TX&amp;gt;\beta}\) 表示该平面上半空间（Half Space） \(\symbfit{a^TX&amp;gt;\beta}\) 表示该平面下半空间（Lower Space） \(\symbfit{a}\) 表示法向量，与该平面垂直，指向使得\(\symbfit{a^TX}\)增大的方向（\(\symbfit{a^TX&amp;gt;\beta}\)的方向，即上半空间）  因此，想要\(\min \symbfit{c^TX}\)，应当向着\(-\symbfit{c}\)的方向改变X。
-如果可行域\(P\)完全落在某一个平面\(\symbfit{-c^Tx}=\beta\)对应的平面的下半平面，那么\(\symbfit{c^Tx}\)在\(P\)内的最小值有一个下界\(-\beta\)。
-沿着\(-c\)（法向量）的方向走，目标函数\(\symbfit{-c^Tx}\)的值越来越大，对应地，沿着\(c\)（法向量）的方向走，\(\symbfit{-c^Tx}\)的值越来越小，\(\symbfit{c^Tx}\)的值越来越大，因此\(\symbfit{c^Tx}\)的最小值最小只可能是\(-\beta\)（正好位于平面\(\symbfit{c^Tx=-\beta}\)）。因此，如果可行域与平面相交，那么最值在交点（或线或平面）处取得。
-这也解释了为什么Graphical Method，要求先画出可行区域，之后沿着一个方向（目标函数法向量）移动目标函数的曲线，直到找到与可行域的最后一个交点。
- Graphical Method：遍历每一个可行域Polyhedral的交点，根据目标函数得到\(-c\)的方向，画出对应垂直的平面\(\symbfit{-c^Tx=\beta}\)，看可行域是否完全位于该平面的下半空间，若找到则最优解也找到，否则继续遍历。
-  方法存在的问题：交点太多，遍历交点的复杂度指数级
-  Simplex Method 有效生成和管理可行域交点的方式，避免去每个交点处插旗子（选择性遍历）。
-LP的Fundamental Theorem 有\(p\)个点\(\mathbf{x^1,x^2,\ldots,x^p}\)，令 \(\mathbf{x}=\sum_{i=1}^p\lambda_i\mathbf{x^i}\)，即\(p\)个点的线性组合。
-二维情景：\(\mathbf{x^1}=(0,1)^T, \mathbf{x^2}=(1,0)^T\)
- Figure 1: 线性组合示意图  同样的\(\lambda_1+\lambda_2=1\)，得到的线性组合（新的点）为\((\lambda_1x^1_1+\lambda_2x^2_1, \lambda_1x^1_2+\lambda_2x^2_2)\)，即\((\lambda_1x^1_1+(1-\lambda_1)x^2_1, \lambda_1x^1_2+(1-\lambda_1)x^2_2)=((x_1^1-x_1^2)\lambda_1+x_1^2, (x_2^1-x_2^2)\lambda_1+x_2^2) \rightarrow y=(x-x^2_1)/(x_1^1-x_1^2) * (x_2^1-x_2^2)+x^2_2\)，这就是AB形成的直线。因此，
- 当\(\lambda_i \ge 0\)时，它的空间位于为AB线段：convex combination 当不要求\(\lambda_i \ge 0\)时，它的空间位于AB所在直线：affine combination 当不要求\(\lambda_1+\lambda_2=1\)时，它是整个第一象限：conic combination  直观理解：
- convex组合，两点连线段 affine组合，两点连成直线 conic组合，两点到原点连线向外张成的锥（无限向外不封闭）  回到Linear Programming，可行域</description>
-    </item>
-    
-    <item>
-      <title>Hello R Markdown</title>
-      <link>https://runqhu.com/2020/12/01/hello-r-markdown/</link>
-      <pubDate>Tue, 01 Dec 2020 21:13:14 -0500</pubDate>
-      
-      <guid>https://runqhu.com/2020/12/01/hello-r-markdown/</guid>
-      <description>R Markdown This is an R Markdown document. Markdown is a simple formatting syntax for authoring HTML, PDF, and MS Word documents. For more details on using R Markdown see http://rmarkdown.rstudio.com.
-You can embed an R code chunk like this:
-summary(cars) ## speed dist ## Min. : 4.0 Min. : 2.00 ## 1st Qu.:12.0 1st Qu.: 26.00 ## Median :15.0 Median : 36.00 ## Mean :15.4 Mean : 42.98 ## 3rd Qu.</description>
-    </item>
-    
+    <lastBuildDate>Sun, 14 Feb 2016 00:00:00 +0000</lastBuildDate><atom:link href="/post/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>A Plain Markdown Post</title>
-      <link>https://runqhu.com/2016/12/30/a-plain-markdown-post/</link>
-      <pubDate>Fri, 30 Dec 2016 21:49:57 -0700</pubDate>
+      <link>/post/2016/02/14/a-plain-markdown-post/</link>
+      <pubDate>Sun, 14 Feb 2016 00:00:00 +0000</pubDate>
       
-      <guid>https://runqhu.com/2016/12/30/a-plain-markdown-post/</guid>
-      <description>This is a post written in plain Markdown (*.md) instead of R Markdown (*.Rmd). The major differences are:
- You cannot run any R code in a plain Markdown document, whereas in an R Markdown document, you can embed R code chunks (```{r}); A plain Markdown post is rendered through Blackfriday, and an R Markdown document is compiled by rmarkdown and Pandoc.  There are many differences in syntax between Blackfriday&amp;rsquo;s Markdown and Pandoc&amp;rsquo;s Markdown.</description>
+      <guid>/post/2016/02/14/a-plain-markdown-post/</guid>
+      <description>This sample post is mainly for blogdown users. If you do not use blogdown, you can skip the first section.
+1. Markdown or R Markdown This is a post written in plain Markdown (*.md) instead of R Markdown (*.Rmd). The major differences are:
+ You cannot run any R code in a plain Markdown document, whereas in an R Markdown document, you can embed R code chunks (```{r}); A plain Markdown post is rendered through Blackfriday, and an R Markdown document is compiled by rmarkdown and Pandoc.</description>
     </item>
     
     <item>
       <title>Lorem Ipsum</title>
-      <link>https://runqhu.com/2015/01/01/lorem-ipsum/</link>
-      <pubDate>Thu, 01 Jan 2015 13:09:13 -0600</pubDate>
+      <link>/post/2015/07/23/lorem-ipsum/</link>
+      <pubDate>Thu, 23 Jul 2015 00:00:00 +0000</pubDate>
       
-      <guid>https://runqhu.com/2015/01/01/lorem-ipsum/</guid>
-      <description>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</description>
+      <guid>/post/2015/07/23/lorem-ipsum/</guid>
+      <description>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+Quisque mattis volutpat lorem vitae feugiat.</description>
     </item>
     
   </channel>
