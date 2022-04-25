@@ -26,7 +26,7 @@
 
     
     
-    <meta name="twitter:image" content="https://runqhu.com/post/2022/04/25/linear-programming/index_files/figure-html/unnamed-chunk-2-1.png">
+    <meta name="twitter:image" content="https://runqhu.com/post/2022/04/24/linear-programming/index_files/figure-html/unnamed-chunk-2-1.png">
     
     
 
@@ -80,7 +80,7 @@
 <h1>Linear Programming</h1>
 
 <h3>HU Runqiu
-  /  2022-04-25</h3>
+  /  2022-04-24</h3>
 <hr>
 
 
@@ -105,7 +105,7 @@
 <p>如果可行域<span class="math inline">\(P\)</span>完全落在某一个平面<span class="math inline">\(\mathbf{-c^Tx}=\beta\)</span>对应的平面的下半平面，那么<span class="math inline">\(\mathbf{c^Tx}\)</span>在<span class="math inline">\(P\)</span>内的最小值有一个下界<span class="math inline">\(-\beta\)</span>。</p>
 <p>沿着<span class="math inline">\(-c\)</span>（法向量）的方向走，目标函数<span class="math inline">\(\mathbf{-c^Tx}\)</span>的值越来越大，对应地，沿着<span class="math inline">\(c\)</span>（法向量）的方向走，<span class="math inline">\(\mathbf{-c^Tx}\)</span>的值越来越小，<span class="math inline">\(\mathbf{c^Tx}\)</span>的值越来越大，因此<span class="math inline">\(\mathbf{c^Tx}\)</span>的最小值最小只可能是<span class="math inline">\(-\beta\)</span>（正好位于平面<span class="math inline">\(\mathbf{c^Tx=-\beta}\)</span>）。因此，如果可行域与平面相交，那么最值在交点（或线或平面）处取得。</p>
 <p>这也解释了为什么Graphical Method，要求先画出可行区域，之后沿着一个方向（目标函数法向量）移动目标函数的曲线，直到找到与可行域的最后一个交点。</p>
-<p><img src="https://runqhu.com/post/2022/04/25/linear-programming/index_files/figure-html/unnamed-chunk-2-1.png" width="672" /></p>
+<p><img src="https://runqhu.com/post/2022/04/24/linear-programming/index_files/figure-html/unnamed-chunk-2-1.png" width="672" /></p>
 <blockquote>
 <p>Graphical Method：遍历每一个可行域Polyhedral的交点，根据目标函数得到<span class="math inline">\(-c\)</span>的方向，画出对应垂直的平面<span class="math inline">\(\mathbf{-c^Tx=\beta}\)</span>，看可行域是否完全位于该平面的下半空间，若找到则最优解也找到，否则继续遍历。</p>
 </blockquote>
