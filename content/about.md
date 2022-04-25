@@ -1,9 +1,7 @@
 ---
-author: Yihui Xie
-date: "2017-08-06"
-title: About Hugo Ivy
+author: Runqiu Hu
+date: "2022-04-22"
+title: About Me
 ---
 
-This Hugo theme was ported from [Ivy](https://github.com/dmulholland/ivy), a minimalist website generator built in Python. I don't have time to document this theme. You have to read the source code to understand what it can do. All I can say for now is that I love it. It is clean, minimal, and responsive.
-
-I hope you will enjoy this theme. The source code is [on Github](https://github.com/yihui/hugo-ivy). Happy hacking!
+My name is Runqiu Hu. I graduated from Nanjing University of Posts and telecommunication with a bachelor's degree in 2018, and a master degree from Southeast University in 2021. Currently, I am a PhD Student studying at the University of Hong Kong. My research interests include bike-sharing system optimization, multiobjective optimization, and sustainable trasnportation.
