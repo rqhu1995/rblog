@@ -2,13 +2,31 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
-    <loc>https://runqhu.com/about/</loc>
-    <lastmod>2017-08-06T00:00:00+00:00</lastmod>
+    <loc>https://runqhu.com/categories/academic-notes/</loc>
+    <lastmod>2022-04-25T21:13:14-05:00</lastmod>
   </url><url>
     <loc>https://runqhu.com/categories/</loc>
+    <lastmod>2022-04-25T21:13:14-05:00</lastmod>
   </url><url>
     <loc>https://runqhu.com/</loc>
+    <lastmod>2022-04-25T21:13:14-05:00</lastmod>
+  </url><url>
+    <loc>https://runqhu.com/post/2022/04/25/linear-programming/</loc>
+    <lastmod>2022-04-25T21:13:14-05:00</lastmod>
+  </url><url>
+    <loc>https://runqhu.com/tags/operations-research/</loc>
+    <lastmod>2022-04-25T21:13:14-05:00</lastmod>
+  </url><url>
+    <loc>https://runqhu.com/tags/optimization/</loc>
+    <lastmod>2022-04-25T21:13:14-05:00</lastmod>
+  </url><url>
+    <loc>https://runqhu.com/post/</loc>
+    <lastmod>2022-04-25T21:13:14-05:00</lastmod>
   </url><url>
     <loc>https://runqhu.com/tags/</loc>
+    <lastmod>2022-04-25T21:13:14-05:00</lastmod>
+  </url><url>
+    <loc>https://runqhu.com/about/</loc>
+    <lastmod>2017-08-06T00:00:00+00:00</lastmod>
   </url>
 </urlset>

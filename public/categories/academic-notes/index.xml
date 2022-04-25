@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Posts on Runqiu&#39;s Personal Blog</title>
-    <link>https://runqhu.com/post/</link>
-    <description>Recent content in Posts on Runqiu&#39;s Personal Blog</description>
+    <title>Academic Notes on Runqiu&#39;s Personal Blog</title>
+    <link>https://runqhu.com/categories/academic-notes/</link>
+    <description>Recent content in Academic Notes on Runqiu&#39;s Personal Blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Mon, 25 Apr 2022 21:13:14 -0500</lastBuildDate><atom:link href="https://runqhu.com/post/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Mon, 25 Apr 2022 21:13:14 -0500</lastBuildDate><atom:link href="https://runqhu.com/categories/academic-notes/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Linear Programming</title>
       <link>https://runqhu.com/post/2022/04/25/linear-programming/</link>
