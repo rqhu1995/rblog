@@ -240,3 +240,8 @@ B^{-1} & -B^{-1}N \\
 \end{array}\right]
 $$
 代数上如何决定neighbouring？basic variable只有一个不同（选为BV的变量，并非具体的值）每个BFS有n-m个neighbors（从nbv里选一个进入bv，替换已有的bv，注意替换不是随便替换，需要通过计算把等于0的bv替换走，所以是n-m）
+
+所有信息在$M^{-1}$中均能够体现出来。
+
+- 前$|B|$列：
+- 后$n-m$列：

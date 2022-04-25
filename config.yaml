@@ -26,11 +26,9 @@ menu:
     - name: "Tags"
       url: "/tags/"
       weight: 4
-    - name: "Subscribe"
-      url: "/index.xml"
 
 params:
-  description: "Powered By Blogdown X Hugo-ivy"
+  description: "Wake Up. Kick Ass. Repeat."
   footer: "&copy; [Runqiu Hu](https://runqhu.com) 2022 | [Zhihu](https://www.zhihu.com/people/BobHuNanjing)"
   highlightjsCDN: "//cdn.bootcss.com"
   highlightjsLang: ["r", "yaml", "tex"]
