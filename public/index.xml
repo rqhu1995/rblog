@@ -6,13 +6,13 @@
     <description>Recent content in Home on Runqiu&#39;s Personal Blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Sun, 24 Apr 2022 21:13:14 -0500</lastBuildDate><atom:link href="https://runqhu.com/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Tue, 26 Apr 2022 21:13:14 -0500</lastBuildDate><atom:link href="https://runqhu.com/index.xml" rel="self" type="application/rss+xml" />
     <item>
-      <title>Linear Programming</title>
-      <link>https://runqhu.com/post/2022/04/24/linear-programming/</link>
-      <pubDate>Sun, 24 Apr 2022 21:13:14 -0500</pubDate>
+      <title>Simplex Method</title>
+      <link>https://runqhu.com/post/2022/04/26/simplex-method/</link>
+      <pubDate>Tue, 26 Apr 2022 21:13:14 -0500</pubDate>
       
-      <guid>https://runqhu.com/post/2022/04/24/linear-programming/</guid>
+      <guid>https://runqhu.com/post/2022/04/26/simplex-method/</guid>
       <description>Constraint的几何意义 每一个Constraint是一个Equation，表示为\(\mathbf{a^TX=\beta}\)，表示一个平面
  \(\mathbf{a^TX&amp;gt;\beta}\) 表示该平面上半空间（Half Space） \(\mathbf{a^TX&amp;gt;\beta}\) 表示该平面下半空间（Lower Space） \(\mathbf{a}\) 表示法向量，与该平面垂直，指向使得\(\mathbf{a^TX}\)增大的方向（\(\mathbf{a^TX&amp;gt;\beta}\)的方向，即上半空间）  因此，想要\(\min \mathbf{c^TX}\)，应当向着\(-\mathbf{c}\)的方向改变X。
 如果可行域\(P\)完全落在某一个平面\(\mathbf{-c^Tx}=\beta\)对应的平面的下半平面，那么\(\mathbf{c^Tx}\)在\(P\)内的最小值有一个下界\(-\beta\)。

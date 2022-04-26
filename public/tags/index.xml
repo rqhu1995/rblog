@@ -6,11 +6,20 @@
     <description>Recent content in Tags on Runqiu&#39;s Personal Blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Sun, 24 Apr 2022 21:13:14 -0500</lastBuildDate><atom:link href="https://runqhu.com/tags/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Tue, 26 Apr 2022 21:13:14 -0500</lastBuildDate><atom:link href="https://runqhu.com/tags/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Linear Programming</title>
+      <link>https://runqhu.com/tags/linear-programming/</link>
+      <pubDate>Tue, 26 Apr 2022 21:13:14 -0500</pubDate>
+      
+      <guid>https://runqhu.com/tags/linear-programming/</guid>
+      <description></description>
+    </item>
+    
     <item>
       <title>Operations Research</title>
       <link>https://runqhu.com/tags/operations-research/</link>
-      <pubDate>Sun, 24 Apr 2022 21:13:14 -0500</pubDate>
+      <pubDate>Tue, 26 Apr 2022 21:13:14 -0500</pubDate>
       
       <guid>https://runqhu.com/tags/operations-research/</guid>
       <description></description>
@@ -19,7 +28,7 @@
     <item>
       <title>Optimization</title>
       <link>https://runqhu.com/tags/optimization/</link>
-      <pubDate>Sun, 24 Apr 2022 21:13:14 -0500</pubDate>
+      <pubDate>Tue, 26 Apr 2022 21:13:14 -0500</pubDate>
       
       <guid>https://runqhu.com/tags/optimization/</guid>
       <description></description>
