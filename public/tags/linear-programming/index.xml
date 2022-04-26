@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Linear Programming on Runqiu&#39;s Personal Blog</title>
+    <link>https://runqhu.com/tags/linear-programming/</link>
+    <description>Recent content in Linear Programming on Runqiu&#39;s Personal Blog</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Tue, 26 Apr 2022 21:13:14 -0500</lastBuildDate><atom:link href="https://runqhu.com/tags/linear-programming/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Simplex Method</title>
+      <link>https://runqhu.com/post/2022/04/26/simplex-method/</link>
+      <pubDate>Tue, 26 Apr 2022 21:13:14 -0500</pubDate>
+      
+      <guid>https://runqhu.com/post/2022/04/26/simplex-method/</guid>
+      <description>Constraint的几何意义 每一个Constraint是一个Equation，表示为\(\mathbf{a^TX=\beta}\)，表示一个平面
+ \(\mathbf{a^TX&amp;gt;\beta}\) 表示该平面上半空间（Half Space） \(\mathbf{a^TX&amp;gt;\beta}\) 表示该平面下半空间（Lower Space） \(\mathbf{a}\) 表示法向量，与该平面垂直，指向使得\(\mathbf{a^TX}\)增大的方向（\(\mathbf{a^TX&amp;gt;\beta}\)的方向，即上半空间）  因此，想要\(\min \mathbf{c^TX}\)，应当向着\(-\mathbf{c}\)的方向改变X。
+如果可行域\(P\)完全落在某一个平面\(\mathbf{-c^Tx}=\beta\)对应的平面的下半平面，那么\(\mathbf{c^Tx}\)在\(P\)内的最小值有一个下界\(-\beta\)。
+沿着\(-c\)（法向量）的方向走，目标函数\(\mathbf{-c^Tx}\)的值越来越大，对应地，沿着\(c\)（法向量）的方向走，\(\mathbf{-c^Tx}\)的值越来越小，\(\mathbf{c^Tx}\)的值越来越大，因此\(\mathbf{c^Tx}\)的最小值最小只可能是\(-\beta\)（正好位于平面\(\mathbf{c^Tx=-\beta}\)）。因此，如果可行域与平面相交，那么最值在交点（或线或平面）处取得。
+这也解释了为什么Graphical Method，要求先画出可行区域，之后沿着一个方向（目标函数法向量）移动目标函数的曲线，直到找到与可行域的最后一个交点。
+ Graphical Method：遍历每一个可行域Polyhedral的交点，根据目标函数得到\(-c\)的方向，画出对应垂直的平面\(\mathbf{-c^Tx=\beta}\)，看可行域是否完全位于该平面的下半空间，若找到则最优解也找到，否则继续遍历。
+  方法存在的问题：交点太多，遍历交点的复杂度指数级
+  Simplex Method 有效生成和管理可行域交点的方式，避免去每个交点处插旗子（选择性遍历）。
+LP的Fundamental Theorem 有\(p\)个点\(\mathbf{x^1,x^2,\ldots,x^p}\)，令 \(\mathbf{x}=\sum_{i=1}^p\lambda_i\mathbf{x^i}\)，即\(p\)个点的线性组合。
+二维情景：\(\mathbf{x^1}=(0,1)^T, \mathbf{x^2}=(1,0)^T\)
+ Figure 1: 线性组合示意图  同样的\(\lambda_1+\lambda_2=1\)，得到的线性组合（新的点）为\((\lambda_1x^1_1+\lambda_2x^2_1, \lambda_1x^1_2+\lambda_2x^2_2)\)，即\((\lambda_1x^1_1+(1-\lambda_1)x^2_1, \lambda_1x^1_2+(1-\lambda_1)x^2_2)=((x_1^1-x_1^2)\lambda_1+x_1^2, (x_2^1-x_2^2)\lambda_1+x_2^2) \rightarrow y=(x-x^2_1)/(x_1^1-x_1^2) * (x_2^1-x_2^2)+x^2_2\)，这就是AB形成的直线。因此，
+ 当\(\lambda_i \ge 0\)时，它的空间位于为AB线段：convex combination 当不要求\(\lambda_i \ge 0\)时，它的空间位于AB所在直线：affine combination 当不要求\(\lambda_1+\lambda_2=1\)时，它是整个第一象限：conic combination  直观理解：
+ convex组合，两点连线段 affine组合，两点连成直线 conic组合，两点到原点连线向外张成的锥（无限向外不封闭）  回到Linear Programming，可行域
+\[P=\{\mathbf{x\in R^n} \mid \mathbf{Ax=b, x\ge 0}\}\] - 是一个Polyhedral Set（\(\mathbf{Ax=b}\)对应\(2m\)个Half Space交成的\(m\)个平面，\(n\)为\(x_i \ge 0\)对应的\(n\)个Half Space</description>
+    </item>
+    
+  </channel>
+</rss>
