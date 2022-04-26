@@ -1,7 +1,7 @@
 ---
 title: "Simplex Method"
 author: "HU Runqiu"
-date: "2022-04-26"
+date: 2022-04-26T21:13:14-05:00
 categories: ["Academic Notes"]
 tags: ["Linear Programming", "Operations Research", "Optimization"]
 ---
