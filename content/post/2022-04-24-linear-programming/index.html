@@ -177,5 +177,120 @@ B^{-1} &amp; -B^{-1}N \\
 \end{array}\right]
 \]</span>
 代数上如何决定neighbouring？basic variable只有一个不同（选为BV的变量，并非具体的值）每个BFS有n-m个neighbors（从nbv里选一个进入bv，替换已有的bv，注意替换不是随便替换，需要通过计算把等于0的bv替换走，所以是n-m）</p>
+<p>所有信息在<span class="math inline">\(M^{-1}\)</span>中均能够体现出来。</p>
+<span class="math display">\[\begin{aligned}
+\left[\begin{array}{ll}
+1&amp; 0&amp; -1&amp; -1 \\
+0&amp; 1&amp; -2&amp; -1\\
+0&amp; 0&amp; 1&amp; 0\\
+0&amp; 0&amp; 0&amp; 1
+\end{array}\right]\\
+
+\begin{array}{ll}
+\uparrow &amp; \uparrow&amp; \uparrow&amp; \uparrow \\
+x_3&amp; x_4&amp; x_1&amp; x_2
+\end{array}
+\end{aligned}\]</span>
+<p>前<span class="math inline">\(|B|=m\)</span>列对应basic variables, 后面的n-m列，对应的是non-basic variables。simplex每次找到新解，需要经过一步<span class="math inline">\(x^0+\lambda \mathbf{d}\)</span>的移动，后面的n-m列就是一个可选择的<span class="math inline">\(\mathbf{d}\)</span>，可以看到例如第三列，<span class="math inline">\((-1,-2,1,0)\)</span>，沿着这个方向移动，能够发现这一方向使得前两位变小，第三位增大，即<span class="math inline">\(x_3\)</span>，<span class="math inline">\(x_4\)</span>变小，<span class="math inline">\(x_1\)</span>变大，意味着<span class="math inline">\(x_1\)</span>会进入basis（从0增大为非0），而<span class="math inline">\(x_3\)</span>，<span class="math inline">\(x_4\)</span>将有一个要变non-basis（变成0），按照降低的速度，应当是<span class="math inline">\(x_4\)</span>（-2更小，降低更快）。注意此处index的顺序无论行列都是遵照<span class="math inline">\([B|N]\)</span>的顺序的。</p>
+<p>《此处留一个todo：证明》</p>
+<p>显然，每一步迭代，会有<span class="math inline">\(n-m\)</span>个可选的<span class="math inline">\(d\)</span>方向，会满足BFS的换进换出，但是究竟哪一个方向会是最好的方向呢？此时，首先考虑对目标函数值的影响，肯定是找能让目标函数值降低的方向。我们将选定的<span class="math inline">\(d\)</span>方向记为<span class="math inline">\(d_q\)</span>，对应第<span class="math inline">\(q\)</span>个non-basic variable。实际上，若选定将第<span class="math inline">\(q\)</span>个non-basic variable变为basic，那么那一列的结构将会是：<span class="math inline">\((-B^{-1}A_q \quad 0 \quad 0 \ldots 1(at\ q) \quad 0 \ldots 0)^T\)</span></p>
+<p><span class="math display">\[
+A=\left[\frac{A}{B}\right]=\left[\begin{array}{l}
+{-B^{-1}A_q} \leftarrow {m \times 1}\\
+\hline\\
+0\\
+0\\
+\vdots\\
+1_{q}\\
+\vdots\\
+0
+\end{array}\right]
+\]</span></p>
+<p><span class="math display">\[\begin{align}
+c^TX^{new}&amp;=c^T(X+\lambda d_q)\\
+&amp;=c^TX +  \lambda c^Td_q\\
+&amp;=c^TX +  \lambda [c_B|c^N]^T A\\
+&amp;=c^TX +  \lambda (-c_B^TB^{-1}A_q + c_N^B \leftarrow \text{B除了第$q$行全是0，因此乘完只剩一个$c_q$})\\
+&amp;=c^TX +  \lambda (c_q-c_B^TB^{-1}A_q)
+\end{align}\]</span></p>
+<p>可见<span class="math inline">\(c_q-c_B^TB^{-1}A_q\)</span>决定了新解的质量的提升。形式上是q对应变量的系数（可以理解为cost），减去一个数。因此会叫做关于第<span class="math inline">\(q\)</span>变量的reduced cost，记为<span class="math inline">\(r_q\)</span>，能够反映在第q变量对应的方向上移动， 是否能给目标函数带来更优的变化，若其值小于0，则<span class="math inline">\(d_q\)</span>是一个good direction。</p>
+<p>如果对所有的方向，都能得到<span class="math inline">\(r_q \ge 0\)</span>（obj只会增不会减了），那么已经走到了optimal。</p>
+<p>《证明 todo 此处先略》</p>
+<p>走多远？看good的<span class="math inline">\(d_q\)</span> （下面讨论的<span class="math inline">\(d_q\)</span>均为good，即能够使得obj更优的方向，即<span class="math inline">\(r_q&lt;0\)</span>）。</p>
+<ul>
+<li>Case 1: <span class="math inline">\(d_q\)</span>中每一项都是正的。这种情况说明问题是unbounded的。因为<span class="math inline">\(d_q\)</span>中每一项都是正的，沿着<span class="math inline">\(d_q\)</span>正向走，又能越来越小（<span class="math inline">\(r_q&lt;0\)</span>），那就可以走无穷远，最优解无穷小。</li>
+<li>Case 2: <span class="math inline">\(d_q\)</span>中某些项<span class="math inline">\(d_{q_i}\)</span>（对应的是bv的位置）是负的。取对应的<span class="math inline">\(\underset{i}{\min} \left\{ \dfrac{x_i}{d_{q_i}}\right\}\)</span>作为step length，即取那个最先下降到0的index对应的步长。</li>
+</ul>
+</div>
+</div>
+<div id="two-phase-simplex-method" class="section level1">
+<h1>Two-phase simplex method</h1>
+<ul>
+<li>Phase 1：
+<ul>
+<li>第一步：找到初始的BFS，或者直接说明<span class="math inline">\(P=\emptyset\)</span>，stop。</li>
+</ul></li>
+<li>Phase 2：
+<ul>
+<li>第二步：检查是否是最优。如果当前BFS已经是optimal，stop。
+具体：检查当前BFS对应的<span class="math inline">\(A=[B|N]\)</span>矩阵，对<span class="math inline">\(N\)</span>中各列，计算<span class="math inline">\(r_q=c^Td_q\)</span>，找到任意一个能够使得<span class="math inline">\(r_q&lt;0\)</span>的列，继续第三步。如果全部<span class="math inline">\(r_q \ge 0\)</span>，那么当前的BFS已经是最优解了。</li>
+<li>第三步：Pivoting。更换BFS。计算步长<span class="math inline">\(\lambda\)</span>，利用<span class="math inline">\(\lambda\)</span>和<span class="math inline">\(d_q\)</span>更新现有的BFS，进一步更新<span class="math inline">\(B\)</span>和<span class="math inline">\(N\)</span>，然后回到第二步。</li>
+</ul></li>
+</ul>
+<p>结论：在non-degeneracy的情形下，simplex一定能在有限迭代中得到unbounded minimum或最优解。</p>
+<div id="怎么找到初始的bfs" class="section level2">
+<h2>怎么找到初始的BFS？</h2>
+<div id="method-1-two-phase-method" class="section level3">
+<h3>Method 1: Two-phase method</h3>
+<ul>
+<li>Step 1: 确保每一个constraint右侧为正</li>
+<li>Step 2: 添加人工变量<span class="math inline">\(u_i\)</span>, <span class="math inline">\(i=1,2,\ldots, m\)</span>
+创建一个新问题：</li>
+</ul>
+<span class="math display">\[\begin{aligned}
+&amp;\min \sum_i u_i\\
+&amp;s.t.\\
+&amp;\begin{array}{ccc}
+a_{11} x_{1}+a_{12} x_{2}+ \ldots +a_{1 n} x_{n}&amp;+u_{1} &amp;&amp;&amp;&amp; =b_{1} \geqslant 0 \\
+a_{21} x_{1}+a_{22} x_{2}+ \ldots +a_{2 n} x_{n}&amp;&amp;+u_{2}&amp;&amp;&amp; =b_{2} \geqslant 0 \\
+\vdots &amp; \vdots \\
+a_{m1} x_{1}+a_{m2} x_{2}+ \ldots +a_{mn} x_{n}&amp;&amp;&amp;&amp;+u_m&amp; =b_{m} \geqslant 0 \\
+\end{array}
+\end{aligned}\]</span>
+<p>此时，是一个<span class="math inline">\(n+m\)</span>变量，<span class="math inline">\(m\)</span>个equation的LP问题。一个显而易见的BFS是<span class="math inline">\(x_i=0, u_i=b_i, i=1,\ldots n\)</span>。以此BFS为起点，对这个新问题进行simplex操作。如果原问题有一组解，那么当且仅当：对这个新问题，一定能够优化到所有<span class="math inline">\(u\)</span>都是0的一个解，<span class="math inline">\(\sum_i u_i=0\)</span>。（反证法：假设无论怎么simplex，都不能使得<span class="math inline">\(u_i\)</span>全为0，即总是存在<span class="math inline">\(u_i&gt;0\)</span>，那么说明原问题根本没解。）</p>
+<p>找到这个解后，将这个解作为phase 2的起始解。</p>
+</div>
+<div id="method-2-big-m-method" class="section level3">
+<h3>Method 2: Big-M method</h3>
+<p>实际上，Big-M method是通过将上面的新问题里的目标直接改为</p>
+<p><span class="math display">\[
+\min M\sum_i u_i+c^TX
+\]</span></p>
+<p>此时，由于M无穷大，对这个问题进行一次完整的simplex，一定能够使得所有<span class="math inline">\(u_i=0\)</span>，就不需要做两次simplex。</p>
+<p>问题在于，人能够在tabular过程中识别<span class="math inline">\(M\)</span>是无穷大，但是对计算机，<span class="math inline">\(M\)</span>必须赋值一个具体的值，但计算机无法表达无穷大。</p>
+<p>因此，商业的LP solver基本使用two-phase method。</p>
+<p>例子：</p>
+<span class="math display">\[\begin{aligned}
+&amp; \min x_1 \\
+&amp; s.t. \epsilon x_1 -x_2 - x_3=\epsilon \\
+x_i \ge 0, i=1,2,3
+\end{aligned}\]</span>
+<p>对此问题，使用big-M</p>
+<span class="math display">\[\begin{aligned}
+&amp; \min x_1 + Mu_1 \\
+&amp; s.t.\\
+&amp;\epsilon x_1 -x_2 - x_3 + u_1 = \epsilon \\
+&amp;u_1 \ge 0, x_i \ge 0, i=1,2,3
+\end{aligned}\]</span>
+<p>此时，初始解<span class="math inline">\((0, 0, 0, u_1=\epsilon)^T\)</span>. 我们能够看到，无论<span class="math inline">\(epsilon\)</span>是多少，这个问题的最优解是<span class="math inline">\((1, 0, 0, 0)^T\)</span>。那么，要想求得这个最优解，我们给<span class="math inline">\(M\)</span>的值，应该满足初始解的目标函数值大于等于最优解的目标函数值，即<span class="math inline">\(0+M\epsilon \ge 1\)</span>，即<span class="math inline">\(M \ge \frac{1}{\epsilon}\)</span>。而<span class="math inline">\(\epsilon\)</span>可以任意小，那么小到一定程度将使得<span class="math inline">\(M\)</span>大到一定程度，最终超过计算机可表达的最大数。</p>
+<p>但这个问题在Two-phase就不存在。只优化<span class="math inline">\(u_1\)</span>，就一定能找到<span class="math inline">\((1,0,0,0)\)</span>这个解。将这个解作为初始解进入phase 2，发现直接就是最优，问题解决。</p>
+<p>关于degeneracy的小补充。degeneracy是由于overdetermined的polyhedral造成的，因此我们可以考虑些微倾斜那个overdetermined的polyhedral，把那个共同的焦点牺牲掉，但保证了问题没有degeneracy了。理论上这样的解是错误的，但是数值上由于LP的continuous特性，误差允许的范围内是可行的。</p>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-5"></span>
+<img src="https://runqiuhu-1301738355.cos.ap-nanjing.myqcloud.com/202204270145518.png" alt="关于degeneracy的解决" width="80%" />
+<p class="caption">
+Figure 3: 关于degeneracy的解决
+</p>
+</div>
+</div>
 </div>
 </div>

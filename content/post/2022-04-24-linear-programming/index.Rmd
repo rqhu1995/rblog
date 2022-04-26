@@ -243,5 +243,128 @@ $$
 
 所有信息在$M^{-1}$中均能够体现出来。
 
-- 前$|B|$列：
-- 后$n-m$列：
+\begin{aligned}
+\left[\begin{array}{ll}
+1& 0& -1& -1 \\
+0& 1& -2& -1\\
+0& 0& 1& 0\\
+0& 0& 0& 1
+\end{array}\right]\\
+
+\begin{array}{ll}
+\uparrow & \uparrow& \uparrow& \uparrow \\
+x_3& x_4& x_1& x_2
+\end{array}
+\end{aligned}
+
+前$|B|=m$列对应basic variables, 后面的n-m列，对应的是non-basic variables。simplex每次找到新解，需要经过一步$x^0+\lambda \mathbf{d}$的移动，后面的n-m列就是一个可选择的$\mathbf{d}$，可以看到例如第三列，$(-1,-2,1,0)$，沿着这个方向移动，能够发现这一方向使得前两位变小，第三位增大，即$x_3$，$x_4$变小，$x_1$变大，意味着$x_1$会进入basis（从0增大为非0），而$x_3$，$x_4$将有一个要变non-basis（变成0），按照降低的速度，应当是$x_4$（-2更小，降低更快）。注意此处index的顺序无论行列都是遵照$[B|N]$的顺序的。
+
+《此处留一个todo：证明》
+
+显然，每一步迭代，会有$n-m$个可选的$d$方向，会满足BFS的换进换出，但是究竟哪一个方向会是最好的方向呢？此时，首先考虑对目标函数值的影响，肯定是找能让目标函数值降低的方向。我们将选定的$d$方向记为$d_q$，对应第$q$个non-basic variable。实际上，若选定将第$q$个non-basic variable变为basic，那么那一列的结构将会是：$(-B^{-1}A_q \quad 0 \quad 0 \ldots 1(at\ q) \quad 0 \ldots 0)^T$
+
+$$
+A=\left[\frac{A}{B}\right]=\left[\begin{array}{l}
+{-B^{-1}A_q} \leftarrow {m \times 1}\\
+\hline\\
+0\\
+0\\
+\vdots\\
+1_{q}\\
+\vdots\\
+0
+\end{array}\right]
+$$
+
+\begin{align}
+c^TX^{new}&=c^T(X+\lambda d_q)\\
+&=c^TX +  \lambda c^Td_q\\
+&=c^TX +  \lambda [c_B|c^N]^T A\\
+&=c^TX +  \lambda (-c_B^TB^{-1}A_q + c_N^B \leftarrow \text{B除了第$q$行全是0，因此乘完只剩一个$c_q$})\\
+&=c^TX +  \lambda (c_q-c_B^TB^{-1}A_q)
+\end{align}
+
+可见$c_q-c_B^TB^{-1}A_q$决定了新解的质量的提升。形式上是q对应变量的系数（可以理解为cost），减去一个数。因此会叫做关于第$q$变量的reduced cost，记为$r_q$，能够反映在第q变量对应的方向上移动， 是否能给目标函数带来更优的变化，若其值小于0，则$d_q$是一个good direction。
+
+如果对所有的方向，都能得到$r_q \ge 0$（obj只会增不会减了），那么已经走到了optimal。
+
+《证明 todo 此处先略》
+
+走多远？看good的$d_q$ （下面讨论的$d_q$均为good，即能够使得obj更优的方向，即$r_q<0$）。
+
+- Case 1: $d_q$中每一项都是正的。这种情况说明问题是unbounded的。因为$d_q$中每一项都是正的，沿着$d_q$正向走，又能越来越小（$r_q<0$），那就可以走无穷远，最优解无穷小。
+- Case 2: $d_q$中某些项$d_{q_i}$（对应的是bv的位置）是负的。取对应的$\underset{i}{\min} \left\{ \dfrac{x_i}{d_{q_i}}\right\}$作为step length，即取那个最先下降到0的index对应的步长。
+
+# Two-phase simplex method
+
+- Phase 1：
+  - 第一步：找到初始的BFS，或者直接说明$P=\emptyset$，stop。
+- Phase 2：
+  - 第二步：检查是否是最优。如果当前BFS已经是optimal，stop。
+  具体：检查当前BFS对应的$A=[B|N]$矩阵，对$N$中各列，计算$r_q=c^Td_q$，找到任意一个能够使得$r_q<0$的列，继续第三步。如果全部$r_q \ge 0$，那么当前的BFS已经是最优解了。
+  - 第三步：Pivoting。更换BFS。计算步长$\lambda$，利用$\lambda$和$d_q$更新现有的BFS，进一步更新$B$和$N$，然后回到第二步。
+  
+结论：在non-degeneracy的情形下，simplex一定能在有限迭代中得到unbounded minimum或最优解。
+
+## 怎么找到初始的BFS？
+### Method 1: Two-phase method
+
+- Step 1: 确保每一个constraint右侧为正
+- Step 2: 添加人工变量$u_i$, $i=1,2,\ldots, m$
+创建一个新问题：
+
+\begin{aligned}
+&\min \sum_i u_i\\
+&s.t.\\
+&\begin{array}{ccc}
+a_{11} x_{1}+a_{12} x_{2}+ \ldots +a_{1 n} x_{n}&+u_{1} &&&& =b_{1} \geqslant 0 \\
+a_{21} x_{1}+a_{22} x_{2}+ \ldots +a_{2 n} x_{n}&&+u_{2}&&& =b_{2} \geqslant 0 \\
+\vdots & \vdots \\
+a_{m1} x_{1}+a_{m2} x_{2}+ \ldots +a_{mn} x_{n}&&&&+u_m& =b_{m} \geqslant 0 \\
+\end{array}
+\end{aligned}
+
+此时，是一个$n+m$变量，$m$个equation的LP问题。一个显而易见的BFS是$x_i=0, u_i=b_i, i=1,\ldots n$。以此BFS为起点，对这个新问题进行simplex操作。如果原问题有一组解，那么当且仅当：对这个新问题，一定能够优化到所有$u$都是0的一个解，$\sum_i u_i=0$。（反证法：假设无论怎么simplex，都不能使得$u_i$全为0，即总是存在$u_i>0$，那么说明原问题根本没解。）
+
+找到这个解后，将这个解作为phase 2的起始解。
+
+### Method 2: Big-M method
+
+实际上，Big-M method是通过将上面的新问题里的目标直接改为
+
+$$
+\min M\sum_i u_i+c^TX
+$$
+
+此时，由于M无穷大，对这个问题进行一次完整的simplex，一定能够使得所有$u_i=0$，就不需要做两次simplex。
+
+问题在于，人能够在tabular过程中识别$M$是无穷大，但是对计算机，$M$必须赋值一个具体的值，但计算机无法表达无穷大。
+
+因此，商业的LP solver基本使用two-phase method。
+
+例子：
+
+\begin{aligned}
+& \min x_1 \\
+& s.t. \epsilon x_1 -x_2 - x_3=\epsilon \\
+x_i \ge 0, i=1,2,3
+\end{aligned}
+
+对此问题，使用big-M
+
+\begin{aligned}
+& \min x_1 + Mu_1 \\
+& s.t.\\
+&\epsilon x_1 -x_2 - x_3 + u_1 = \epsilon \\
+&u_1 \ge 0, x_i \ge 0, i=1,2,3
+\end{aligned}
+
+此时，初始解$(0, 0, 0, u_1=\epsilon)^T$. 我们能够看到，无论$epsilon$是多少，这个问题的最优解是$(1, 0, 0, 0)^T$。那么，要想求得这个最优解，我们给$M$的值，应该满足初始解的目标函数值大于等于最优解的目标函数值，即$0+M\epsilon \ge 1$，即$M \ge \frac{1}{\epsilon}$。而$\epsilon$可以任意小，那么小到一定程度将使得$M$大到一定程度，最终超过计算机可表达的最大数。
+
+但这个问题在Two-phase就不存在。只优化$u_1$，就一定能找到$(1,0,0,0)$这个解。将这个解作为初始解进入phase 2，发现直接就是最优，问题解决。
+
+关于degeneracy的小补充。degeneracy是由于overdetermined的polyhedral造成的，因此我们可以考虑些微倾斜那个overdetermined的polyhedral，把那个共同的焦点牺牲掉，但保证了问题没有degeneracy了。理论上这样的解是错误的，但是数值上由于LP的continuous特性，误差允许的范围内是可行的。
+
+```{r echo=FALSE,fig.align='center',fig.cap="关于degeneracy的解决", out.width = '80%'}
+knitr::include_graphics("https://runqiuhu-1301738355.cos.ap-nanjing.myqcloud.com/202204270145518.png")
+```
